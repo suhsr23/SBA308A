@@ -1,11 +1,9 @@
-// Constants
+
 const API_KEY = 'live_bbAVlQpMo06H3Jr16wNiy96LZDOps0Fdka4hYV33ahYnoD57xqZPStvRy8qbPJrH';
 const API_URL = 'https://api.thedogapi.com/v1';
 
-// Global variables
 let favorites = [];
 
-// Fetch functions
 async function fetchBreeds() {
     try {
         const response = await fetch(`${API_URL}/breeds`, {
@@ -37,8 +35,6 @@ async function fetchBreedDetails(breedId) {
         console.error('Fetch error:', error);
     }
 }
-
-// UI functions
 function displayBreeds(query) {
     searchBreeds(query)
         .then(breeds => {
@@ -72,7 +68,6 @@ function updateFavoritesList() {
     });
 }
 
-// Helper function to create breed card
 function createBreedCard(breed, imageUrl) {
     const breedCard = document.createElement('div');
     breedCard.className = 'breed-card';
@@ -84,21 +79,17 @@ function createBreedCard(breed, imageUrl) {
     breedCard.querySelector('button').addEventListener('click', () => addToFavorites(breed));
     return breedCard;
 }
-
-// Search function
 async function searchBreeds(query) {
     const breeds = await fetchBreeds();
     if (!breeds) return [];
     return breeds.filter(breed => breed.name.toLowerCase().includes(query.toLowerCase()));
 }
 
-// Event listeners
 document.getElementById('searchButton').addEventListener('click', () => {
     const query = document.getElementById('searchInput').value;
     displayBreeds(query);
 });
 
-// Initialize the application
 document.addEventListener('DOMContentLoaded', () => {
-    // Initialize any setup here if needed
+   
 });
